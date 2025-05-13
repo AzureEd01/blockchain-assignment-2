@@ -68,6 +68,7 @@ randomB = 721
 randomC = 821
 randomD = 921
 
+# THE T
 # Random Interger Signing
 # Inventory A Signature
 tA = pow(randomA, pkg_e, pkg_n) % pkg_n
@@ -152,5 +153,50 @@ print("Final Signature:", s, ",", t)
 # ==========================================================================================================================
 # Verification
 # ==========================================================================================================================
+import tkinter as tk
+#create a widget (named m for master)
+m= tk.Tk()
+record_var = tk.StringVar()
 
-# Not done
+#function for submit button
+def submit():
+    record_id = record_var.get()
+    print(record_id)
+    
+    #inv A search 
+    # string to search in file
+    # with open(r'A_inventory_db.txt', 'r') as fp:
+    #     # read all lines using readline()
+    #     lines = fp.readlines()
+    #     for row in lines:
+    #         # check if string present on a current line
+    #         word = record_id
+    #         #print(row.find(word))
+    #         # find() method returns -1 if the value is not found,
+    #         # if found it returns index of the first occurrence of the substring
+    #         if row.find(word) != -1:
+    #             print('string exists in file')
+    #             print('line Number:', lines.index(row))
+
+
+    #f is now the file object 
+    f = open("A_inventory_db.txt")
+    print(f.read())
+
+    #inv B search 
+
+    #inv C search 
+
+    #inv D search 
+
+
+
+#UI
+#prompt to ask for an ID to search for 
+tk.Label(m, text='Item ID: ').grid(row=0)
+#inputbox
+tk.Entry(m, textvariable = record_var).grid(row=0, column= 1)
+#enter button
+entBtn = tk.Button(m, text='Enter', command = submit).grid(row=2, column= 0)
+
+m.mainloop()
