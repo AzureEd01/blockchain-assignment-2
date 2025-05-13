@@ -162,26 +162,25 @@ record_var = tk.StringVar()
 def submit():
     record_id = record_var.get()
     print(record_id)
-    
-    #inv A search 
-    # string to search in file
-    # with open(r'A_inventory_db.txt', 'r') as fp:
-    #     # read all lines using readline()
-    #     lines = fp.readlines()
-    #     for row in lines:
-    #         # check if string present on a current line
-    #         word = record_id
-    #         #print(row.find(word))
-    #         # find() method returns -1 if the value is not found,
-    #         # if found it returns index of the first occurrence of the substring
-    #         if row.find(word) != -1:
-    #             print('string exists in file')
-    #             print('line Number:', lines.index(row))
-
 
     #f is now the file object 
-    f = open("A_inventory_db.txt")
-    print(f.read())
+    with open("A_inventory_db.txt") as f:
+        lines = f.readlines()
+        for row in lines:
+            id = record_id
+
+            #checking if the id is in the line
+            if row.find(id) != -1:
+                print('string exists in file')
+                print('line Number:', lines.index(row))
+                
+                #break the line up so we can get the qty
+                print(row.split(','))
+                split_row = row.split(',')
+                #get the qty (2nd value)
+                qty = split_row[1]
+                print("qty: ", qty)
+
 
     #inv B search 
 
