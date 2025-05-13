@@ -206,10 +206,10 @@ tk.Label(m, textvariable = sig_var).grid(row=19, column = 1)
 
 tk.Label(m, text= 'Validating the signature using public key (n,e)').grid(row=20, column = 0)
 
-tk.Label(m, text= 'Original message:').grid(row=21, column = 0)
+tk.Label(m, text= 'Original message [in decimal form]:').grid(row=21, column = 0)
 tk.Label(m, textvariable = original_msg_hashed_val).grid(row=21, column = 1)
 
-tk.Label(m, text= 'Decrypted signature:').grid(row=22, column = 0)
+tk.Label(m, text= 'Decrypted signature [m’ = s^e mod n ]:').grid(row=22, column = 0)
 tk.Label(m, textvariable = decsig_var).grid(row=22, column = 1)
 
 tk.Label(m, text= 'Valid?:').grid(row=23, column = 0)
