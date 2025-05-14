@@ -147,7 +147,7 @@ print("Signer D:", s4)
 s = (s1 * s2 * s3 * s4) % pkg_n
 print("Signature: ", s)
 # Signature is s = (t, s)
-print("Final Signature:", s, ",", t)
+print("Final Signature:", t, ",", s)
 
 # ==========================================================================================================================
 # Verification

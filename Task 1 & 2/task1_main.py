@@ -3,63 +3,6 @@ import hashlib
 import key_pairs
 from key_pairs import stored_key_pairs as keys
 
-#create a widget (named m for master)
-m= tk.Tk()
-
-#create tk variable for the entered record 
-record_var = tk.StringVar()
-
-#vars for storing answers for display
-p_var = tk.StringVar()
-q_var = tk.StringVar()
-e_var = tk.StringVar()
-n_var = tk.StringVar()
-d_var = tk.StringVar()
-phin_var = tk.StringVar()
-bytes_var = tk.StringVar()
-hash_var = tk.StringVar()
-dec_var  = tk.StringVar()
-sig_var = tk.StringVar()
-decsig_var = tk.StringVar()
-valid_var = tk.StringVar()
-original_msg_hashed_val = tk.StringVar()
-error_var = tk.StringVar()
-
-
-def display_calcs(inv_name):
-    # TRY FIND A CLEANER WAY 
-    if (inv_name == 'a'):
-        p_var.set(key_pairs.inv_a_p)
-        q_var.set(key_pairs.inv_a_q)
-        e_var.set(key_pairs.inv_a_e)
-        n_var.set(key_pairs.inv_a_n)
-        d_var.set(key_pairs.inv_a_d)
-        phin_var.set(key_pairs.inv_a_phin)
-    elif (inv_name == 'b'):
-        p_var.set(key_pairs.inv_b_p)
-        q_var.set(key_pairs.inv_b_q)
-        e_var.set(key_pairs.inv_b_e)
-        n_var.set(key_pairs.inv_b_n)
-        d_var.set(key_pairs.inv_b_d)
-        phin_var.set(key_pairs.inv_b_phin)
-    
-    elif (inv_name == 'c'):
-        p_var.set(key_pairs.inv_c_p)
-        q_var.set(key_pairs.inv_c_q)
-        e_var.set(key_pairs.inv_c_e)
-        n_var.set(key_pairs.inv_c_n)
-        d_var.set(key_pairs.inv_c_d)
-        phin_var.set(key_pairs.inv_c_phin)
-    
-    elif (inv_name == 'd'):
-        p_var.set(key_pairs.inv_d_p)
-        q_var.set(key_pairs.inv_d_q)
-        e_var.set(key_pairs.inv_d_e)
-        n_var.set(key_pairs.inv_d_n)
-        d_var.set(key_pairs.inv_d_d)
-        phin_var.set(key_pairs.inv_d_phin)
-
-
 #signing the record function
 def sign(record, inv_name):
     #hashing the record
@@ -147,7 +90,64 @@ def submit():
         original_msg_hashed_val.set('')
         
     
+# UI 
 
+#create a widget (named m for master)
+m= tk.Tk()
+
+#create tk variable for the entered record 
+record_var = tk.StringVar()
+
+#vars for storing answers for display
+p_var = tk.StringVar()
+q_var = tk.StringVar()
+e_var = tk.StringVar()
+n_var = tk.StringVar()
+d_var = tk.StringVar()
+phin_var = tk.StringVar()
+bytes_var = tk.StringVar()
+hash_var = tk.StringVar()
+dec_var  = tk.StringVar()
+sig_var = tk.StringVar()
+decsig_var = tk.StringVar()
+valid_var = tk.StringVar()
+original_msg_hashed_val = tk.StringVar()
+error_var = tk.StringVar()
+
+
+def display_calcs(inv_name):
+    # TRY FIND A CLEANER WAY 
+    if (inv_name == 'a'):
+        p_var.set(key_pairs.inv_a_p)
+        q_var.set(key_pairs.inv_a_q)
+        e_var.set(key_pairs.inv_a_e)
+        n_var.set(key_pairs.inv_a_n)
+        d_var.set(key_pairs.inv_a_d)
+        phin_var.set(key_pairs.inv_a_phin)
+    elif (inv_name == 'b'):
+        p_var.set(key_pairs.inv_b_p)
+        q_var.set(key_pairs.inv_b_q)
+        e_var.set(key_pairs.inv_b_e)
+        n_var.set(key_pairs.inv_b_n)
+        d_var.set(key_pairs.inv_b_d)
+        phin_var.set(key_pairs.inv_b_phin)
+    
+    elif (inv_name == 'c'):
+        p_var.set(key_pairs.inv_c_p)
+        q_var.set(key_pairs.inv_c_q)
+        e_var.set(key_pairs.inv_c_e)
+        n_var.set(key_pairs.inv_c_n)
+        d_var.set(key_pairs.inv_c_d)
+        phin_var.set(key_pairs.inv_c_phin)
+    
+    elif (inv_name == 'd'):
+        p_var.set(key_pairs.inv_d_p)
+        q_var.set(key_pairs.inv_d_q)
+        e_var.set(key_pairs.inv_d_e)
+        n_var.set(key_pairs.inv_d_n)
+        d_var.set(key_pairs.inv_d_d)
+        phin_var.set(key_pairs.inv_d_phin)
+        
 #Prompt to enter a record:
 tk.Label(m, text='Enter a new record').grid(row=0)
 #inputbox
