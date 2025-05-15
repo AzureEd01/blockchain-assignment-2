@@ -62,10 +62,10 @@ def keygen():
     return private_keys
 
 
-def pkg_search_qty(record_id):
-    # send the request to the inventory servers
-    #str_id = 
-    qty_A = inventory_A_search(record_id)
-    qty_B = inventory_B_search(record_id)
-    qty_C = inventory_C_search(record_id)
-    qty_D = inventory_D_search(record_id)
+# def pkg_search_qty(record_id):
+#     # send the request to the inventory servers
+#     #str_id = 
+#     qty_A = inventory_A_search(record_id)
+#     qty_B = inventory_B_search(record_id)
+#     qty_C = inventory_C_search(record_id)
+#     qty_D = inventory_D_search(record_id)
