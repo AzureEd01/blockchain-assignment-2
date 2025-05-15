@@ -1,3 +1,23 @@
+#imports ------------------------------------
+from pkg_server import get_pkg_e 
+from pkg_server import get_pkg_n 
+
+#Variables----------------------------------
+inventoryA_id = 126
+randomA = 621
+#-------------------------------------------
+
+def inv_A_key_req():
+    return inventoryA_id 
+
+def calc_t():
+    #Get the pkg e (part of public key)
+    pkg_e = get_pkg_e()
+    pkg_n = get_pkg_n()
+    tA = pow(randomA, pkg_e, pkg_n)
+    return tA
+
+
 def inventory_A_search(record_id):
      with open('A_inventory_db.txt') as f:
         lines = f.readlines()
@@ -12,7 +32,7 @@ def inventory_A_search(record_id):
                 #get the qty (2nd value)
                 qty = split_row[1]
                 item_qty = qty
-                return item_qty
-        if not item_qty:
-            print("Item doesnt exist.")
-            return "not found"
+                #calculate t for signing 
+                tA = calc_t(qty)
+                #exchange t 
+        

@@ -1,3 +1,8 @@
+inventoryD_id = 129
+
+def inv_D_key_req():
+    return inventoryD_id    
+
 def inventory_D_search(record_id):
      with open('D_inventory_db.txt') as f:
         lines = f.readlines()

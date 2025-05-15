@@ -3,6 +3,7 @@ import hashlib
 from keys import gen_partial_sig
 from keys import gen_multi_sig
 from pkg_server import pkg_search_qty
+from pkg_server import keygen
 
 # ==========================================================================================================================
 # Signature
@@ -24,6 +25,10 @@ m= tk.Tk()
 record_var = tk.StringVar()
 
 def submit():
+#PKG makes the keys 
+    keygen()
+
+
 #searches for a item id to get the qty
     record_id = record_var.get()
     q = pkg_search_qty(record_id)
