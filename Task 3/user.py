@@ -36,3 +36,4 @@ def proc_validate_second(m, t):
     new_t = pow(int(t), decimal_m, pkg_n)
     result_2 = A_id * B_id * C_id * D_id * new_t % pkg_n
     return result_2
+

@@ -5,6 +5,7 @@ inventoryA_id = 126
 randomA = 621
 tA = ''
 sA = ''
+node_name = 'A'
 #-------------------------------------------
 #function to send the 
 def inv_A_key_req():
@@ -72,3 +73,53 @@ def inventory_A_search(record_id):
                 #get the qty (2nd value)
                 qty = split_row[1]
                 return qty
+# Consensus
+def pbft_propose(record_id):
+    # 1. Local search
+    qty_A = inventory_A_search(record_id)
+    tA = calc_tA()
+    from inventory_B_server import calc_tB
+    from inventory_C_server import calc_tC
+    from inventory_D_server import calc_tD
+    tB = calc_tB()
+    tC = calc_tC()
+    tD = calc_tD()
+
+    # 2. Aggregate t
+    agg_t = a_calc_aggregated_t(tA, tB, tC, tD)
+
+    # 3. Partial sig
+    gA = get_privkey_A()
+    sA = a_calc_partial_sig(qty_A, agg_t, gA)
+
+    # 4. Validation by replicas (send proposal for verification)
+    proposal_data = {
+        'record_id': record_id,
+        'qty': qty_A,
+        's': sA,
+        'tA': tA,
+        'tB': tB,
+        'tC': tC,
+        'tD': tD,
+        'agg_t': agg_t
+    }
+
+    from inventory_B_server import pbft_vote_on_primary
+    from inventory_C_server import pbft_vote_on_primary
+    from inventory_D_server import pbft_vote_on_primary
+
+    vote_B = pbft_vote_on_primary(proposal_data)
+    vote_C = pbft_vote_on_primary(proposal_data)
+    vote_D = pbft_vote_on_primary(proposal_data)
+
+    votes = [vote_B, vote_C, vote_D]
+    print("Votes returned: ", votes)
+
+    # 5. Count agreement
+    if votes.count(vote_B) >= 2:  # at least 2 nodes must agree
+        print("✔ PBFT consensus reached with majority result:", vote_B)
+        return qty_A, sA, agg_t, tA, tB, tC, tD
+    else:
+        print("✘ PBFT consensus failed.")
+        return None
+

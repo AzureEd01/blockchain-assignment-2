@@ -3,6 +3,7 @@ import hashlib
 inventoryD_id = 129
 randomD = 921
 tD = ''
+node_name = 'D'
 
 def inv_D_key_req():
     return inventoryD_id  
@@ -68,3 +69,23 @@ def inventory_D_search(record_id):
                 #get the qty (2nd value)
                 qty = split_row[1]
                 return qty
+            
+# Consensus
+def pbft_vote_on_primary(data):
+    # from pkg_server import get_privkey_D  # change per node
+    from pkg_server import get_pkg_n
+    import hashlib
+
+    # Recompute validation
+    s = data['s']
+    qty = data['qty']
+    t = data['agg_t']
+    m = str(t) + str(qty)
+
+    hash_m = hashlib.md5(m.encode()).hexdigest()
+    decimal_m = int(hash_m, 16)
+
+    # Recalculate the validation value
+    new_t = pow(int(t), decimal_m, get_pkg_n())
+    # Simulated verification return
+    return new_t  # or any value representing "valid"
