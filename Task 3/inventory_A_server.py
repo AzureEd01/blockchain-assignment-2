@@ -1,15 +1,17 @@
+import hashlib
 #The imports are done within the functions to avoid circular import issue
 #Variables----------------------------------
 inventoryA_id = 126
 randomA = 621
 tA = ''
+sA = ''
 #-------------------------------------------
 #function to send the 
 def inv_A_key_req():
     return inventoryA_id 
 
-# def tA_req():
-#     return tA
+def inv_A_psig_req():
+    return sA
 
 def calc_tA():
     from pkg_server import get_pkg_e
@@ -20,22 +22,46 @@ def calc_tA():
     tA = pow(randomA, pkg_e, pkg_n)
     return tA
 
-# def send_tJ(inv_name, tJ):
-#     filename = inv_name + "_storage.txt"
-#     with open(filename, 'r+') as f:
-#         #write the key into the file
-#         f.write('tA: ' + str(tJ))
-
 def calc_aggregated_t(tA, tB, tC, tD):
     from pkg_server import get_pkg_n
     pkg_n = get_pkg_n()
     t = (tA * tB * tC * tD) % int(pkg_n)
     return t
 
+def calc_partial_sig(m, t, gJ):
+    #get random number 
+    randomJ = randomA
+    #get pkg n
+    from pkg_server import get_pkg_n
+    pkg_n = get_pkg_n()
+    #hash message
+    hash_m = hashlib.md5(m.encode()).hexdigest()
+    #convert message to int 
+    decimal_m = int(hash_m, 16)
+    #append message to t
+    m = str(t) + m
+    #Each signer also computes sj = gj*rj^H(t,m) mod n , this is then shared with eachother
+    sJ = gJ * randomJ
+    sJ = pow(sJ, decimal_m, pkg_n)
+    return sJ
+
+def calc_multisig(sA, sB, sC, sD):
+    #get pkg n
+    from pkg_server import get_pkg_n
+    pkg_n = get_pkg_n()
+    #calc
+    s = (sA * sB * sC * sD) % pkg_n
+    return s 
+
+def get_privkey_A():
+    from pkg_server import get_priv_key
+    gA = get_priv_key('A')
+    return gA
+
 def inventory_A_search(record_id):
+     global sA
      with open('A_inventory_db.txt') as f:
         lines = f.readlines()
-        item_qty = ''
         for row in lines:
             id = record_id
             #checking if the id is in the line
@@ -45,28 +71,4 @@ def inventory_A_search(record_id):
                 split_row = row.split(',')
                 #get the qty (2nd value)
                 qty = split_row[1]
-                item_qty = qty
-                #calculate t for signing 
-                tA = calc_tA()
-                print("INV A: tA is ", tA)
-
-                #Get the other ts 
-                #Get tB
-                from inventory_B_server import calc_tB
-                tB = calc_tB()
-                print("Inv A: Inv tB is: ", tB)
-
-                #Get tC
-                from inventory_C_server import calc_tC
-                tC = calc_tC()
-                print("Inv A: Inv tC is: ", tC)
-
-                #Get tD
-                from inventory_D_server import calc_tD
-                tD = calc_tD()
-                print("Inv A: Inv tD is: ", tD)
-
-                #Calculate aggregated t
-                t = calc_aggregated_t(tA, tB, tC, tD)
-                print("Inv A: Aggregated t= ", t)
-
+                return qty

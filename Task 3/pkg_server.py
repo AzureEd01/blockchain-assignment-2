@@ -35,15 +35,15 @@ def keysign(id):
     gJ = pow(id, pkg_d, pkg_n)
     return gJ
 
-def send_privkey(inv_name, privkey):
-    filename = inv_name + "_storage.txt"
-    with open(filename, 'r+') as f:
-        #clear the file being opened
-        f.truncate()
-        #write the key into the file
-        f.write('Private key: ' + str(privkey))
+private_keys = {}
+
+#save the private keys, the servers will then request them 
+def get_priv_key(inv_name):
+    priv_key = private_keys[inv_name]
+    return priv_key
 
 def keygen():
+    global private_keys
     #get the each servers id 
     A_id = inv_A_key_req()
     B_id = inv_B_key_req()
@@ -51,19 +51,15 @@ def keygen():
     D_id = inv_D_key_req()
     print("PKG: IDs recieved")
 
-    #pkg signs the IDs 
-    A_priv = keysign(A_id)
-    B_priv = keysign(B_id)
-    C_priv = keysign(C_id)
-    D_priv = keysign(D_id)
+    #pkg signs the IDs & stored in dictionary 
+    private_keys = {
+        'A' : keysign(A_id),
+        'B' : keysign(B_id),
+        'C' : keysign(C_id),
+        'D' : keysign(D_id)
+    }
     print("PKG: Private keys made- ID has been signed")
-
-    #send the priv keys to the inventories 
-    send_privkey('A', A_priv)
-    # send_privkey('B', B_priv)
-    # send_privkey('C', C_priv)
-    # send_privkey('D', D_priv)
-    print("PKG: Private keys have been sent")
+    return private_keys
 
 
 def pkg_search_qty(record_id):
