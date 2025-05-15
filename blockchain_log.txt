@@ -152,3 +152,915 @@
   "hash": "00002bfd2f3903851e6b325cd4394e9e"
 }
 ============================================================
+{
+  "timestamp": 1747325598.1233218,
+  "data": {
+    "inventory": [
+      {
+        "ItemID": "001",
+        "ItemQTY": 32,
+        "ItemPrice": 12,
+        "Location": "D"
+      },
+      {
+        "ItemID": "002",
+        "ItemQTY": 20,
+        "ItemPrice": 14,
+        "Location": "C"
+      },
+      {
+        "ItemID": "003",
+        "ItemQTY": 22,
+        "ItemPrice": 16,
+        "Location": "B"
+      },
+      {
+        "ItemID": "004",
+        "ItemQTY": 12,
+        "ItemPrice": 18,
+        "Location": "A"
+      },
+      {
+        "ItemID": "012",
+        "ItemQTY": 129,
+        "ItemPrice": 12,
+        "Location": "A"
+      }
+    ]
+  },
+  "nonce": 49084,
+  "hash": "00003b498d6e16aed7aa7ee24a79ca0e",
+  "time_taken": 0.04468727111816406
+}
+============================================================
+{
+  "timestamp": 1747325810.4380267,
+  "data": {
+    "inventory": [
+      {
+        "ItemID": "001",
+        "ItemQTY": 32,
+        "ItemPrice": 12,
+        "Location": "D"
+      },
+      {
+        "ItemID": "002",
+        "ItemQTY": 20,
+        "ItemPrice": 14,
+        "Location": "C"
+      },
+      {
+        "ItemID": "003",
+        "ItemQTY": 22,
+        "ItemPrice": 16,
+        "Location": "B"
+      },
+      {
+        "ItemID": "004",
+        "ItemQTY": 12,
+        "ItemPrice": 18,
+        "Location": "A"
+      },
+      {
+        "ItemID": "012",
+        "ItemQTY": 129,
+        "ItemPrice": 12,
+        "Location": "A"
+      },
+      {
+        "ItemID": "007",
+        "ItemQTY": 12,
+        "ItemPrice": 12,
+        "Location": "C"
+      }
+    ]
+  },
+  "nonce": 58807,
+  "hash": "0000a42154742957f55a2e85b50bbaf8",
+  "time_taken": 0.058386802673339844
+}
+============================================================
+{
+  "timestamp": 1747325829.2399442,
+  "data": {
+    "inventory": [
+      {
+        "ItemID": "001",
+        "ItemQTY": 32,
+        "ItemPrice": 12,
+        "Location": "D"
+      },
+      {
+        "ItemID": "002",
+        "ItemQTY": 20,
+        "ItemPrice": 14,
+        "Location": "C"
+      },
+      {
+        "ItemID": "003",
+        "ItemQTY": 22,
+        "ItemPrice": 16,
+        "Location": "B"
+      },
+      {
+        "ItemID": "004",
+        "ItemQTY": 12,
+        "ItemPrice": 18,
+        "Location": "A"
+      },
+      {
+        "ItemID": "012",
+        "ItemQTY": 129,
+        "ItemPrice": 12,
+        "Location": "A"
+      },
+      {
+        "ItemID": "007",
+        "ItemQTY": 12,
+        "ItemPrice": 12,
+        "Location": "C"
+      },
+      {
+        "ItemID": "012",
+        "ItemQTY": 121,
+        "ItemPrice": 23,
+        "Location": "D"
+      }
+    ]
+  },
+  "nonce": 764037,
+  "hash": "00000e1db4434370027b34ab5cd073dc",
+  "time_taken": 0.8556904792785645
+}
+============================================================
+{
+  "timestamp": 1747326010.3690217,
+  "data": {
+    "inventory": [
+      {
+        "ItemID": "001",
+        "ItemQTY": 32,
+        "ItemPrice": 12,
+        "Location": "D"
+      },
+      {
+        "ItemID": "002",
+        "ItemQTY": 20,
+        "ItemPrice": 14,
+        "Location": "C"
+      },
+      {
+        "ItemID": "003",
+        "ItemQTY": 22,
+        "ItemPrice": 16,
+        "Location": "B"
+      },
+      {
+        "ItemID": "004",
+        "ItemQTY": 12,
+        "ItemPrice": 18,
+        "Location": "A"
+      },
+      {
+        "ItemID": "012",
+        "ItemQTY": 129,
+        "ItemPrice": 12,
+        "Location": "A"
+      },
+      {
+        "ItemID": "007",
+        "ItemQTY": 12,
+        "ItemPrice": 12,
+        "Location": "C"
+      },
+      {
+        "ItemID": "012",
+        "ItemQTY": 121,
+        "ItemPrice": 23,
+        "Location": "D"
+      },
+      {
+        "ItemID": "001",
+        "ItemQTY": 19,
+        "ItemPrice": 18,
+        "Location": "A"
+      }
+    ]
+  },
+  "nonce": 2213308,
+  "hash": "00000cfe8fd2a061a9607534de8f3f2e",
+  "time_taken": 2.666851043701172
+}
+============================================================
+{
+  "timestamp": 1747326471.8493097,
+  "data": {
+    "inventory": [
+      {
+        "ItemID": "002",
+        "ItemQTY": 20,
+        "ItemPrice": 14,
+        "Location": "C",
+        "SourceFile": "A_inventory_db.txt"
+      },
+      {
+        "ItemID": "003",
+        "ItemQTY": 22,
+        "ItemPrice": 16,
+        "Location": "B",
+        "SourceFile": "A_inventory_db.txt"
+      },
+      {
+        "ItemID": "004",
+        "ItemQTY": 12,
+        "ItemPrice": 18,
+        "Location": "A",
+        "SourceFile": "A_inventory_db.txt"
+      },
+      {
+        "ItemID": "002",
+        "ItemQTY": 20,
+        "ItemPrice": 14,
+        "Location": "C",
+        "SourceFile": "B_inventory_db.txt"
+      },
+      {
+        "ItemID": "003",
+        "ItemQTY": 22,
+        "ItemPrice": 16,
+        "Location": "B",
+        "SourceFile": "B_inventory_db.txt"
+      },
+      {
+        "ItemID": "004",
+        "ItemQTY": 12,
+        "ItemPrice": 18,
+        "Location": "A",
+        "SourceFile": "B_inventory_db.txt"
+      },
+      {
+        "ItemID": "002",
+        "ItemQTY": 20,
+        "ItemPrice": 14,
+        "Location": "C",
+        "SourceFile": "C_inventory_db.txt"
+      },
+      {
+        "ItemID": "003",
+        "ItemQTY": 22,
+        "ItemPrice": 16,
+        "Location": "B",
+        "SourceFile": "C_inventory_db.txt"
+      },
+      {
+        "ItemID": "004",
+        "ItemQTY": 12,
+        "ItemPrice": 18,
+        "Location": "A",
+        "SourceFile": "C_inventory_db.txt"
+      },
+      {
+        "ItemID": "002",
+        "ItemQTY": 20,
+        "ItemPrice": 14,
+        "Location": "C",
+        "SourceFile": "D_inventory_db.txt"
+      },
+      {
+        "ItemID": "003",
+        "ItemQTY": 22,
+        "ItemPrice": 16,
+        "Location": "B",
+        "SourceFile": "D_inventory_db.txt"
+      },
+      {
+        "ItemID": "004",
+        "ItemQTY": 12,
+        "ItemPrice": 18,
+        "Location": "A",
+        "SourceFile": "D_inventory_db.txt"
+      },
+      {
+        "ItemID": "001",
+        "ItemQTY": 18,
+        "ItemPrice": 19,
+        "Location": "C"
+      }
+    ]
+  },
+  "nonce": 108465,
+  "hash": "00006bc1a555820f545a0ae4206f01ab",
+  "time_taken": 0.23148822784423828
+}
+============================================================
+{
+  "timestamp": 1747326811.56805,
+  "data": {
+    "inventory": [
+      {
+        "ItemID": "001",
+        "ItemQTY": 18,
+        "ItemPrice": 19,
+        "Location": "C",
+        "SourceFile": "A_inventory_db.txt"
+      },
+      {
+        "ItemID": "002",
+        "ItemQTY": 20,
+        "ItemPrice": 14,
+        "Location": "C",
+        "SourceFile": "A_inventory_db.txt"
+      },
+      {
+        "ItemID": "003",
+        "ItemQTY": 22,
+        "ItemPrice": 16,
+        "Location": "B",
+        "SourceFile": "A_inventory_db.txt"
+      },
+      {
+        "ItemID": "004",
+        "ItemQTY": 12,
+        "ItemPrice": 18,
+        "Location": "A",
+        "SourceFile": "A_inventory_db.txt"
+      },
+      {
+        "ItemID": "001",
+        "ItemQTY": 32,
+        "ItemPrice": 12,
+        "Location": "D",
+        "SourceFile": "B_inventory_db.txt"
+      },
+      {
+        "ItemID": "002",
+        "ItemQTY": 20,
+        "ItemPrice": 14,
+        "Location": "C",
+        "SourceFile": "B_inventory_db.txt"
+      },
+      {
+        "ItemID": "003",
+        "ItemQTY": 22,
+        "ItemPrice": 16,
+        "Location": "B",
+        "SourceFile": "B_inventory_db.txt"
+      },
+      {
+        "ItemID": "004",
+        "ItemQTY": 12,
+        "ItemPrice": 18,
+        "Location": "A",
+        "SourceFile": "B_inventory_db.txt"
+      },
+      {
+        "ItemID": "001",
+        "ItemQTY": 32,
+        "ItemPrice": 12,
+        "Location": "D",
+        "SourceFile": "C_inventory_db.txt"
+      },
+      {
+        "ItemID": "002",
+        "ItemQTY": 20,
+        "ItemPrice": 14,
+        "Location": "C",
+        "SourceFile": "C_inventory_db.txt"
+      },
+      {
+        "ItemID": "003",
+        "ItemQTY": 22,
+        "ItemPrice": 16,
+        "Location": "B",
+        "SourceFile": "C_inventory_db.txt"
+      },
+      {
+        "ItemID": "004",
+        "ItemQTY": 12,
+        "ItemPrice": 18,
+        "Location": "A",
+        "SourceFile": "C_inventory_db.txt"
+      },
+      {
+        "ItemID": "001",
+        "ItemQTY": 32,
+        "ItemPrice": 12,
+        "Location": "D",
+        "SourceFile": "D_inventory_db.txt"
+      },
+      {
+        "ItemID": "002",
+        "ItemQTY": 20,
+        "ItemPrice": 14,
+        "Location": "C",
+        "SourceFile": "D_inventory_db.txt"
+      },
+      {
+        "ItemID": "003",
+        "ItemQTY": 22,
+        "ItemPrice": 16,
+        "Location": "B",
+        "SourceFile": "D_inventory_db.txt"
+      },
+      {
+        "ItemID": "004",
+        "ItemQTY": 12,
+        "ItemPrice": 18,
+        "Location": "A",
+        "SourceFile": "D_inventory_db.txt"
+      },
+      {
+        "ItemID": "012",
+        "ItemQTY": 19,
+        "ItemPrice": 18,
+        "Location": "D"
+      }
+    ]
+  },
+  "nonce": 76876,
+  "hash": "0000fb52a3b8baab66bb5f7244b4213d",
+  "time_taken": 0.1911182403564453
+}
+============================================================
+{
+  "timestamp": 1747326871.7972646,
+  "data": {
+    "inventory": [
+      {
+        "ItemID": "001",
+        "ItemQTY": 18,
+        "ItemPrice": 19,
+        "Location": "C",
+        "SourceFile": "A_inventory_db.txt"
+      },
+      {
+        "ItemID": "002",
+        "ItemQTY": 20,
+        "ItemPrice": 14,
+        "Location": "C",
+        "SourceFile": "A_inventory_db.txt"
+      },
+      {
+        "ItemID": "003",
+        "ItemQTY": 22,
+        "ItemPrice": 16,
+        "Location": "B",
+        "SourceFile": "A_inventory_db.txt"
+      },
+      {
+        "ItemID": "004",
+        "ItemQTY": 12,
+        "ItemPrice": 18,
+        "Location": "A",
+        "SourceFile": "A_inventory_db.txt"
+      },
+      {
+        "ItemID": "001",
+        "ItemQTY": 32,
+        "ItemPrice": 12,
+        "Location": "D",
+        "SourceFile": "B_inventory_db.txt"
+      },
+      {
+        "ItemID": "002",
+        "ItemQTY": 20,
+        "ItemPrice": 14,
+        "Location": "C",
+        "SourceFile": "B_inventory_db.txt"
+      },
+      {
+        "ItemID": "003",
+        "ItemQTY": 22,
+        "ItemPrice": 16,
+        "Location": "B",
+        "SourceFile": "B_inventory_db.txt"
+      },
+      {
+        "ItemID": "004",
+        "ItemQTY": 12,
+        "ItemPrice": 18,
+        "Location": "A",
+        "SourceFile": "B_inventory_db.txt"
+      },
+      {
+        "ItemID": "001",
+        "ItemQTY": 32,
+        "ItemPrice": 12,
+        "Location": "D",
+        "SourceFile": "C_inventory_db.txt"
+      },
+      {
+        "ItemID": "002",
+        "ItemQTY": 20,
+        "ItemPrice": 14,
+        "Location": "C",
+        "SourceFile": "C_inventory_db.txt"
+      },
+      {
+        "ItemID": "003",
+        "ItemQTY": 22,
+        "ItemPrice": 16,
+        "Location": "B",
+        "SourceFile": "C_inventory_db.txt"
+      },
+      {
+        "ItemID": "004",
+        "ItemQTY": 12,
+        "ItemPrice": 18,
+        "Location": "A",
+        "SourceFile": "C_inventory_db.txt"
+      },
+      {
+        "ItemID": "001",
+        "ItemQTY": 32,
+        "ItemPrice": 12,
+        "Location": "D",
+        "SourceFile": "D_inventory_db.txt"
+      },
+      {
+        "ItemID": "002",
+        "ItemQTY": 20,
+        "ItemPrice": 14,
+        "Location": "C",
+        "SourceFile": "D_inventory_db.txt"
+      },
+      {
+        "ItemID": "003",
+        "ItemQTY": 22,
+        "ItemPrice": 16,
+        "Location": "B",
+        "SourceFile": "D_inventory_db.txt"
+      },
+      {
+        "ItemID": "004",
+        "ItemQTY": 12,
+        "ItemPrice": 18,
+        "Location": "A",
+        "SourceFile": "D_inventory_db.txt"
+      },
+      {
+        "ItemID": "008",
+        "ItemQTY": 12,
+        "ItemPrice": 12,
+        "Location": "C"
+      }
+    ]
+  },
+  "nonce": 48693,
+  "hash": "00002f11b47a6871e997e354aa80044a",
+  "time_taken": 0.12392830848693848
+}
+============================================================
+{
+  "timestamp": 1747327071.0789132,
+  "data": {
+    "inventory": [
+      {
+        "ItemID": "001",
+        "ItemQTY": 18,
+        "ItemPrice": 19,
+        "Location": "C"
+      },
+      {
+        "ItemID": "002",
+        "ItemQTY": 20,
+        "ItemPrice": 14,
+        "Location": "C"
+      },
+      {
+        "ItemID": "003",
+        "ItemQTY": 22,
+        "ItemPrice": 16,
+        "Location": "B"
+      },
+      {
+        "ItemID": "004",
+        "ItemQTY": 12,
+        "ItemPrice": 18,
+        "Location": "A"
+      },
+      {
+        "ItemID": "018",
+        "ItemQTY": 19,
+        "ItemPrice": 1,
+        "Location": "A"
+      }
+    ]
+  },
+  "nonce": 14452,
+  "hash": "0000c837eb4ba555f9d0fa241cfb2489",
+  "time_taken": 0.013390541076660156
+}
+============================================================
+{
+  "timestamp": 1747327101.2107828,
+  "data": {
+    "inventory": [
+      {
+        "ItemID": "001",
+        "ItemQTY": 18,
+        "ItemPrice": 19,
+        "Location": "C"
+      },
+      {
+        "ItemID": "002",
+        "ItemQTY": 20,
+        "ItemPrice": 14,
+        "Location": "C"
+      },
+      {
+        "ItemID": "003",
+        "ItemQTY": 22,
+        "ItemPrice": 16,
+        "Location": "B"
+      },
+      {
+        "ItemID": "004",
+        "ItemQTY": 12,
+        "ItemPrice": 18,
+        "Location": "A"
+      },
+      {
+        "ItemID": "018",
+        "ItemQTY": 19,
+        "ItemPrice": 1,
+        "Location": "A"
+      },
+      {
+        "ItemID": "017",
+        "ItemQTY": 19,
+        "ItemPrice": 12,
+        "Location": "B"
+      }
+    ]
+  },
+  "nonce": 8299353,
+  "hash": "00000076b44cb4545d4fdcbbd40c8e2b",
+  "time_taken": 7.89383864402771
+}
+============================================================
+{
+  "timestamp": 1747327347.81548,
+  "data": {
+    "inventory": [
+      {
+        "ItemID": "001",
+        "ItemQTY": 18,
+        "ItemPrice": 19,
+        "Location": "C"
+      },
+      {
+        "ItemID": "002",
+        "ItemQTY": 20,
+        "ItemPrice": 14,
+        "Location": "C"
+      },
+      {
+        "ItemID": "003",
+        "ItemQTY": 22,
+        "ItemPrice": 16,
+        "Location": "B"
+      },
+      {
+        "ItemID": "004",
+        "ItemQTY": 12,
+        "ItemPrice": 18,
+        "Location": "A"
+      },
+      {
+        "ItemID": "018",
+        "ItemQTY": 19,
+        "ItemPrice": 1,
+        "Location": "A"
+      },
+      {
+        "ItemID": "017",
+        "ItemQTY": 19,
+        "ItemPrice": 12,
+        "Location": "B"
+      },
+      {
+        "ItemID": "009",
+        "ItemQTY": 12,
+        "ItemPrice": 1,
+        "Location": "A"
+      }
+    ]
+  },
+  "nonce": 1700541,
+  "hash": "000000801af23695848166dd6e1cc049",
+  "time_taken": 1.8093774318695068
+}
+============================================================
+{
+  "timestamp": 1747327886.4845545,
+  "data": {
+    "inventory": [
+      {
+        "ItemID": "001",
+        "ItemQTY": 18,
+        "ItemPrice": 19,
+        "Location": "C"
+      },
+      {
+        "ItemID": "002",
+        "ItemQTY": 20,
+        "ItemPrice": 14,
+        "Location": "C"
+      },
+      {
+        "ItemID": "003",
+        "ItemQTY": 22,
+        "ItemPrice": 16,
+        "Location": "B"
+      },
+      {
+        "ItemID": "004",
+        "ItemQTY": 12,
+        "ItemPrice": 18,
+        "Location": "A"
+      },
+      {
+        "ItemID": "018",
+        "ItemQTY": 19,
+        "ItemPrice": 1,
+        "Location": "A"
+      },
+      {
+        "ItemID": "017",
+        "ItemQTY": 19,
+        "ItemPrice": 12,
+        "Location": "B"
+      },
+      {
+        "ItemID": "009",
+        "ItemQTY": 12,
+        "ItemPrice": 1,
+        "Location": "A"
+      },
+      {
+        "ItemID": "005",
+        "ItemQTY": 89,
+        "ItemPrice": 19,
+        "Location": "A"
+      }
+    ]
+  },
+  "nonce": 17006148,
+  "hash": "000000e8cfcbdfa658e8b85a74cfd23b",
+  "time_taken": 19.279773950576782
+}
+============================================================
+{
+  "timestamp": 1747328072.687246,
+  "data": {
+    "inventory": [
+      {
+        "ItemID": "001",
+        "ItemQTY": 18,
+        "ItemPrice": 19,
+        "Location": "C"
+      },
+      {
+        "ItemID": "002",
+        "ItemQTY": 20,
+        "ItemPrice": 14,
+        "Location": "C"
+      },
+      {
+        "ItemID": "003",
+        "ItemQTY": 22,
+        "ItemPrice": 16,
+        "Location": "B"
+      },
+      {
+        "ItemID": "004",
+        "ItemQTY": 12,
+        "ItemPrice": 18,
+        "Location": "A"
+      },
+      {
+        "ItemID": "018",
+        "ItemQTY": 19,
+        "ItemPrice": 1,
+        "Location": "A"
+      },
+      {
+        "ItemID": "017",
+        "ItemQTY": 19,
+        "ItemPrice": 12,
+        "Location": "B"
+      },
+      {
+        "ItemID": "009",
+        "ItemQTY": 12,
+        "ItemPrice": 1,
+        "Location": "A"
+      },
+      {
+        "ItemID": "005",
+        "ItemQTY": 89,
+        "ItemPrice": 19,
+        "Location": "A"
+      },
+      {
+        "ItemID": "027",
+        "ItemQTY": 12,
+        "ItemPrice": 19,
+        "Location": "D"
+      }
+    ]
+  },
+  "nonce": 1276065,
+  "hash": "000000f7c1084c02c9dd679e566295fc",
+  "time_taken": 1.741028070449829
+}
+============================================================
+{
+  "timestamp": 1747328969.9961545,
+  "data": {
+    "inventory": [
+      {
+        "ItemID": "001",
+        "ItemQTY": 18,
+        "ItemPrice": 19,
+        "Location": "C"
+      },
+      {
+        "ItemID": "002",
+        "ItemQTY": 20,
+        "ItemPrice": 14,
+        "Location": "C"
+      },
+      {
+        "ItemID": "003",
+        "ItemQTY": 22,
+        "ItemPrice": 16,
+        "Location": "B"
+      },
+      {
+        "ItemID": "004",
+        "ItemQTY": 12,
+        "ItemPrice": 18,
+        "Location": "A"
+      },
+      {
+        "ItemID": "016",
+        "ItemQTY": 12,
+        "ItemPrice": 19,
+        "Location": "B"
+      }
+    ]
+  },
+  "nonce": 6993149,
+  "hash": "00000098f6496a62d3944d43abb9cdf5",
+  "time_taken": 6.027266263961792
+}
+============================================================
+{
+  "timestamp": 1747331337.7126672,
+  "data": {
+    "inventory": [
+      {
+        "ItemID": "001",
+        "ItemQTY": 18,
+        "ItemPrice": 19,
+        "Location": "C"
+      },
+      {
+        "ItemID": "002",
+        "ItemQTY": 20,
+        "ItemPrice": 14,
+        "Location": "C"
+      },
+      {
+        "ItemID": "003",
+        "ItemQTY": 22,
+        "ItemPrice": 16,
+        "Location": "B"
+      },
+      {
+        "ItemID": "004",
+        "ItemQTY": 12,
+        "ItemPrice": 18,
+        "Location": "A"
+      },
+      {
+        "ItemID": "016",
+        "ItemQTY": 12,
+        "ItemPrice": 19,
+        "Location": "B"
+      },
+      {
+        "ItemID": "018",
+        "ItemQTY": 12,
+        "ItemPrice": 1,
+        "Location": "A"
+      }
+    ]
+  },
+  "nonce": 18450618,
+  "hash": "0000001edbb5724d7270fb75b6414c10",
+  "time_taken": 17.17115330696106
+}
+============================================================

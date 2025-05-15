@@ -1,0 +1,9 @@
+==== New Record ====
+ItemID: 008
+Quantity: 12
+Price: 19
+Location: A
+Nonce: 33093
+Hash: 00009b0c2de57de785a71f54d29c48d3ee2b09c0db582831cf288aecae76704a
+====================
+
