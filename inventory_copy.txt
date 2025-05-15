@@ -23,18 +23,6 @@
       "ItemQTY": 12,
       "ItemPrice": 18,
       "Location": "A"
-    },
-    {
-      "ItemID": "012",
-      "ItemQTY": 12,
-      "ItemPrice": 12,
-      "Location": "C"
-    },
-    {
-      "ItemID": "011",
-      "ItemQTY": 12,
-      "ItemPrice": 12,
-      "Location": "D"
     }
   ],
   "Inventory2": [
@@ -61,18 +49,6 @@
       "ItemQTY": 12,
       "ItemPrice": 18,
       "Location": "A"
-    },
-    {
-      "ItemID": "012",
-      "ItemQTY": 12,
-      "ItemPrice": 12,
-      "Location": "C"
-    },
-    {
-      "ItemID": "011",
-      "ItemQTY": 12,
-      "ItemPrice": 12,
-      "Location": "D"
     }
   ],
   "Inventory3": [
@@ -99,18 +75,6 @@
       "ItemQTY": 12,
       "ItemPrice": 18,
       "Location": "A"
-    },
-    {
-      "ItemID": "012",
-      "ItemQTY": 12,
-      "ItemPrice": 12,
-      "Location": "C"
-    },
-    {
-      "ItemID": "011",
-      "ItemQTY": 12,
-      "ItemPrice": 12,
-      "Location": "D"
     }
   ],
   "Inventory4": [
@@ -137,18 +101,6 @@
       "ItemQTY": 12,
       "ItemPrice": 18,
       "Location": "A"
-    },
-    {
-      "ItemID": "012",
-      "ItemQTY": 12,
-      "ItemPrice": 12,
-      "Location": "C"
-    },
-    {
-      "ItemID": "011",
-      "ItemQTY": 12,
-      "ItemPrice": 12,
-      "Location": "D"
     }
   ]
 }
