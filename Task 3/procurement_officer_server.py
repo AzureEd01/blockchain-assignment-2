@@ -129,30 +129,23 @@ def submit():
     from inventory_D_server import d_calc_multisig
     d_multi_s = d_calc_multisig(sA, sB, sC, sD)
     print("Inv D, Multi-sig: ", d_multi_s)
-    #------------------------------------------------
     
-    #PKG encrypts the message for validation
+    #------------------------------------------------
+    #Validation stuff (d)
+    from user import proc_validate_message
+    a_validation_result = proc_validate_message(a_multi_s)
+    print("Valid with A: ", a_validation_result)
+    b_validation_result = proc_validate_message(b_multi_s)
+    print("Valid with B: ", b_validation_result)
+    c_validation_result = proc_validate_message(c_multi_s)
+    print("Valid with C: ", c_validation_result)
+    d_validation_result = proc_validate_message(d_multi_s)
+    print("Valid with D: ", d_validation_result)
 
-
-
-
-
-    #Validation stuff
-
-    # from pkg_server import pkg_encrypt_message
-    # a_validation_result = pkg_encrypt_message(a_multi_s)
-    # print("Valid with A: ", a_validation_result)
-    # b_validation_result = pkg_encrypt_message(b_multi_s)
-    # print("Valid with B: ", b_validation_result)
-    # c_validation_result = pkg_encrypt_message(c_multi_s)
-    # print("Valid with C: ", c_validation_result)
-    # d_validation_result = pkg_encrypt_message(d_multi_s)
-    # print("Valid with D: ", d_validation_result)
-
-    # #result is computedt using identities 
-    # from pkg_server import pkg_encrypt_second
-    # second_validation_result = pkg_encrypt_second(tA, qty_A)
-    # print("Second validation: ", second_validation_result)
+    #result is computedt using identities 
+    from user import proc_validate_second
+    second_validation_result = proc_validate_second(tA, qty_A)
+    print("Second validation: ", second_validation_result)
 
 
 #UI--------------------------------------------------
