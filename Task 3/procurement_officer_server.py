@@ -10,11 +10,6 @@ from inventory_A_server import calc_tA
 # Signature
 # ==========================================================================================================================
 
-# # procurement officer
-# No idea where to use this
-# p = 1080954735722463992988394149602856332100628417
-# q = 1158106283320086444890911863299879973542293243
-# e = 106506253943651610547613
 
 
 # ==========================================================================================================================
@@ -137,20 +132,27 @@ def submit():
     #------------------------------------------------
     
     #PKG encrypts the message for validation
-    from pkg_server import pkg_encrypt_message
-    a_validation_result = pkg_encrypt_message(a_multi_s)
-    print("Valid with A: ", a_validation_result)
-    b_validation_result = pkg_encrypt_message(b_multi_s)
-    print("Valid with B: ", b_validation_result)
-    c_validation_result = pkg_encrypt_message(c_multi_s)
-    print("Valid with C: ", c_validation_result)
-    d_validation_result = pkg_encrypt_message(d_multi_s)
-    print("Valid with D: ", d_validation_result)
 
-    #result is computedt using identities 
-    from pkg_server import pkg_encrypt_second
-    second_validation_result = pkg_encrypt_second(tA, qty_A)
-    print("Second validation: ", second_validation_result)
+
+
+
+
+    #Validation stuff
+
+    # from pkg_server import pkg_encrypt_message
+    # a_validation_result = pkg_encrypt_message(a_multi_s)
+    # print("Valid with A: ", a_validation_result)
+    # b_validation_result = pkg_encrypt_message(b_multi_s)
+    # print("Valid with B: ", b_validation_result)
+    # c_validation_result = pkg_encrypt_message(c_multi_s)
+    # print("Valid with C: ", c_validation_result)
+    # d_validation_result = pkg_encrypt_message(d_multi_s)
+    # print("Valid with D: ", d_validation_result)
+
+    # #result is computedt using identities 
+    # from pkg_server import pkg_encrypt_second
+    # second_validation_result = pkg_encrypt_second(tA, qty_A)
+    # print("Second validation: ", second_validation_result)
 
 
 #UI--------------------------------------------------
