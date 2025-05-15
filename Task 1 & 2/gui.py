@@ -1,5 +1,5 @@
 import tkinter as tk
-import task2_main as logic
+import task2_main as logic # calculation logic
 
 m = tk.Tk()
 m.title("Inventory Manager + RSA Signer")

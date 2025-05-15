@@ -4,10 +4,11 @@ import os
 import key_pairs
 from key_pairs import stored_key_pairs as keys
 
-INVENTORY_FILE = "inventory.txt"
+INVENTORY_FILE = "Task 1 & 2/inventory.txt"
 AUTHORIZED_USERS = {"admin001", "manager002", "auditor003"}
 CLONES = ["Inventory1", "Inventory2", "Inventory3", "Inventory4"]
 
+# Initial inventory data
 initial_inventory = [
     {"ItemID": "001", "ItemQTY": 32, "ItemPrice": 12, "Location": "D"},
     {"ItemID": "002", "ItemQTY": 20, "ItemPrice": 14, "Location": "C"},
