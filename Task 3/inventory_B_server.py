@@ -8,9 +8,6 @@ sB = ''
 def inv_B_key_req():
     return inventoryB_id  
 
-def inv_B_psig_req():
-    return sB
-
 def get_privkey_B():
     from pkg_server import get_priv_key
     gB = get_priv_key('B')
@@ -31,18 +28,18 @@ def b_calc_aggregated_t(tA, tB, tC, tD):
     t = (tA * tB * tC * tD) % pkg_n
     return t
 
-def calc_partial_sig(m, t, gJ):
+def b_calc_partial_sig(m, t, gJ):
     #get random number 
     randomJ = randomB
     #get pkg n
     from pkg_server import get_pkg_n
     pkg_n = get_pkg_n()
+    #append message to t
+    m = str(t) + m
     #hash message
     hash_m = hashlib.md5(m.encode()).hexdigest()
     #convert message to int 
     decimal_m = int(hash_m, 16)
-    #append message to t
-    m = str(t) + m
     #Each signer also computes sj = gj*rj^H(t,m) mod n , this is then shared with eachother
     sJ = gJ * randomJ
     sJ = pow(sJ, decimal_m, pkg_n)

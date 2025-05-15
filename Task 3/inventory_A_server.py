@@ -10,9 +10,6 @@ sA = ''
 def inv_A_key_req():
     return inventoryA_id 
 
-def inv_A_psig_req():
-    return sA
-
 def calc_tA():
     from pkg_server import get_pkg_e
     from pkg_server import get_pkg_n
@@ -28,18 +25,18 @@ def a_calc_aggregated_t(tA, tB, tC, tD):
     t = (tA * tB * tC * tD) % int(pkg_n)
     return t
 
-def calc_partial_sig(m, t, gJ):
+def a_calc_partial_sig(m, t, gJ):
     #get random number 
     randomJ = randomA
     #get pkg n
     from pkg_server import get_pkg_n
     pkg_n = get_pkg_n()
+    #append message to t
+    m = str(t) + m
     #hash message
     hash_m = hashlib.md5(m.encode()).hexdigest()
     #convert message to int 
     decimal_m = int(hash_m, 16)
-    #append message to t
-    m = str(t) + m
     #Each signer also computes sj = gj*rj^H(t,m) mod n , this is then shared with eachother
     sJ = gJ * randomJ
     sJ = pow(sJ, decimal_m, pkg_n)

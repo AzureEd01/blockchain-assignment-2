@@ -1,14 +1,15 @@
 #Imports -------------------------------------------------
-from inventory_A_server import inventory_A_search
+import hashlib
+# from inventory_A_server import inventory_A_search
 from inventory_A_server import inv_A_key_req
 
-from inventory_B_server import inventory_B_search
+# from inventory_B_server import inventory_B_search
 from inventory_B_server import inv_B_key_req
 
-from inventory_C_server import inventory_C_search
+# from inventory_C_server import inventory_C_search
 from inventory_C_server import inv_C_key_req
 
-from inventory_D_server import inventory_D_search
+# from inventory_D_server import inventory_D_search
 from inventory_D_server import inv_D_key_req
 #----------------------------------------------------------
 #PKG key --------------------------------------------------
@@ -25,6 +26,7 @@ pkg_phi_n = (pkg_p - 1) * (pkg_q - 1)
 # pkg private key
 pkg_d = pow(pkg_e, -1, pkg_phi_n)
 #-------------------------------------------------------------
+
 def get_pkg_e():
     return pkg_e
 
@@ -50,7 +52,6 @@ def keygen():
     C_id = inv_C_key_req()
     D_id = inv_D_key_req()
     print("PKG: IDs recieved")
-
     #pkg signs the IDs & stored in dictionary 
     private_keys = {
         'A' : keysign(A_id),
@@ -60,6 +61,30 @@ def keygen():
     }
     print("PKG: Private keys made- ID has been signed")
     return private_keys
+
+def pkg_encrypt_message(s):
+    #compute individual
+    result = pow(s, pkg_e, pkg_n)
+    return result
+
+def pkg_encrypt_second(m, t):
+    #get the each servers id 
+    A_id = inv_A_key_req()
+    B_id = inv_B_key_req()
+    C_id = inv_C_key_req()
+    D_id = inv_D_key_req()
+    
+    #append message to t
+    m = str(t) + str(m)
+    #hash message
+    hash_m = hashlib.md5(m.encode()).hexdigest()
+    #convert message to int 
+    decimal_m = int(hash_m, 16)
+
+    new_t = pow(int(t), decimal_m, pkg_n)
+    result_2 = A_id * B_id * C_id * D_id * new_t % pkg_n
+    return result_2
+    
 
 
 # def pkg_search_qty(record_id):
