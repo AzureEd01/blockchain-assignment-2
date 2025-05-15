@@ -36,12 +36,12 @@ def keysign(id):
     return gJ
 
 def send_privkey(inv_name, privkey):
-    filename = inv_name + "_privatekey.txt"
+    filename = inv_name + "_storage.txt"
     with open(filename, 'r+') as f:
         #clear the file being opened
         f.truncate()
         #write the key into the file
-        f.write(str(privkey))
+        f.write('Private key: ' + str(privkey))
 
 def keygen():
     #get the each servers id 
@@ -60,9 +60,9 @@ def keygen():
 
     #send the priv keys to the inventories 
     send_privkey('A', A_priv)
-    send_privkey('B', B_priv)
-    send_privkey('C', C_priv)
-    send_privkey('D', D_priv)
+    # send_privkey('B', B_priv)
+    # send_privkey('C', C_priv)
+    # send_privkey('D', D_priv)
     print("PKG: Private keys have been sent")
 
 
