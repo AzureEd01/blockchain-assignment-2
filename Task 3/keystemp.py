@@ -158,14 +158,14 @@ print("Sending to user: ", msg, ",", s, ",", t)
 # Verification
 # ==========================================================================================================================
 
-#not sure what youve done so imma redo it 
+
 n = p * q
 temp = t % n
 print("temp: ", temp)
 
 #compute individual
 result = pow(s, e, n)
-# print("power1: ", power1)
+print("power1: ", power1)
 
 result = (temp * power1) % n
 print("result: ", result)

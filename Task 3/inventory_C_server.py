@@ -40,8 +40,10 @@ def c_calc_partial_sig(m, t, gJ):
     #convert message to int 
     decimal_m = int(hash_m, 16)
     #Each signer also computes sj = gj*rj^H(t,m) mod n , this is then shared with eachother
-    sJ = gJ * randomJ
-    sJ = pow(sJ, decimal_m, pkg_n)
+    # sJ = gJ * randomJ
+    # sJ = pow(sJ, decimal_m, pkg_n)
+    rJ_exp = pow(randomJ, decimal_m, pkg_n)
+    sJ = (gJ * rJ_exp) % pkg_n
     return sJ
 
 def c_calc_multisig(sA, sB, sC, sD):
