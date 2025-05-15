@@ -43,7 +43,7 @@ def submit():
     from inventory_D_server import inventory_D_search
     qty_D = inventory_D_search(record_id)
 
-    #calculate t for signing -----------------
+    #calculate t for signing ------------------------
     #get tA
     tA = calc_tA()
     print("tA is ", tA)
@@ -62,13 +62,26 @@ def submit():
     from inventory_D_server import calc_tD
     tD = calc_tD()
     print("tD is: ", tD)
-    #----------------------------------------------
-    #Calculate aggregated t------------------------
-    from inventory_A_server import calc_aggregated_t
-    t = calc_aggregated_t(tA, tB, tC, tD)
-    print("Aggregated t= ", t)
+    #------------------------------------------------
+    #Calculate aggregated t -------------------------
+    #A
+    from inventory_A_server import a_calc_aggregated_t
+    inv_a_agg_t = a_calc_aggregated_t(tA, tB, tC, tD)
+    print("Inv A, Aggregated t= ", inv_a_agg_t)
+    #B
+    from inventory_B_server import b_calc_aggregated_t
+    inv_b_agg_t = b_calc_aggregated_t(tA, tB, tC, tD)
+    print("Inv B, Aggregated t= ", inv_b_agg_t)
+    #C
+    from inventory_C_server import c_calc_aggregated_t
+    inv_c_agg_t = c_calc_aggregated_t(tA, tB, tC, tD)
+    print("Inv C, Aggregated t= ", inv_c_agg_t)
+    #D
+    from inventory_D_server import d_calc_aggregated_t
+    inv_d_agg_t = d_calc_aggregated_t(tA, tB, tC, tD)
+    print("Inv D, Aggregated t= ", inv_d_agg_t)
     #-----------------------------------------------
-    #Get secret keys
+    #Get secret keys from PKG
     #A
     from inventory_A_server import get_privkey_A
     gA = get_privkey_A()
@@ -86,33 +99,46 @@ def submit():
     gD = get_privkey_D()
     print("Inv D priv key: ", gD)
     #------------------------------------------------
-    #partial sigs
+    #partial signature calculations 
     #A
     from inventory_A_server import calc_partial_sig
-    sA = calc_partial_sig(qty_A, t, gA)
+    sA = calc_partial_sig(qty_A, inv_a_agg_t, gA)
     print("Inv A partial sig: ", sA)
     #B
     from inventory_B_server import calc_partial_sig
-    sB = calc_partial_sig(qty_B, t, gB)
+    sB = calc_partial_sig(qty_B, inv_b_agg_t, gB)
     print("Inv B partial sig: ", sB)
     #C
     from inventory_C_server import calc_partial_sig
-    sC = calc_partial_sig(qty_C, t, gC)
+    sC = calc_partial_sig(qty_C, inv_c_agg_t, gC)
     print("Inv C partial sig: ", sC)
     #D
     from inventory_D_server import calc_partial_sig
-    sD = calc_partial_sig(qty_D, t, gD)
+    sD = calc_partial_sig(qty_D, inv_d_agg_t, gD)
     print("Inv D partial sig: ", sD)
     #------------------------------------------------
-    #Calc multi sig 
-    from inventory_A_server import calc_multisig
-    s = calc_multisig(sA, sB, sC, sD)
-    print("Multi-sig: ", s)
+    #calculating multi-signature
+    #A
+    from inventory_A_server import a_calc_multisig
+    a_multi_s = a_calc_multisig(sA, sB, sC, sD)
+    print("Inv A, Multi-sig: ", a_multi_s)
+    #B
+    from inventory_B_server import b_calc_multisig
+    b_multi_s = b_calc_multisig(sA, sB, sC, sD)
+    print("Inv B, Multi-sig: ", b_multi_s)
+    #C
+    from inventory_C_server import c_calc_multisig
+    c_multi_s = c_calc_multisig(sA, sB, sC, sD)
+    print("Inv C, Multi-sig: ", c_multi_s)
+    #D
+    from inventory_D_server import d_calc_multisig
+    d_multi_s = d_calc_multisig(sA, sB, sC, sD)
+    print("Inv D, Multi-sig: ", d_multi_s)
     #------------------------------------------------
 
 
 
-#UI--------------------------------------------------------------------------------------------------
+#UI--------------------------------------------------
 #prompt to ask for an ID to search for 
 tk.Label(m, text='Item ID: ').grid(row=0)
 #inputbox

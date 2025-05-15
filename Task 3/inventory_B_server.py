@@ -25,11 +25,11 @@ def calc_tB():
     tB = pow(randomB, pkg_e, pkg_n)
     return tB 
 
-# def calc_aggregated_t(tA, tB, tC, tD):
-#     from pkg_server import get_pkg_n
-#     pkg_n = get_pkg_n()
-#     t = (tA * tB * tC * tD) % pkg_n
-#     return t
+def b_calc_aggregated_t(tA, tB, tC, tD):
+    from pkg_server import get_pkg_n
+    pkg_n = get_pkg_n()
+    t = (tA * tB * tC * tD) % pkg_n
+    return t
 
 def calc_partial_sig(m, t, gJ):
     #get random number 
@@ -48,13 +48,13 @@ def calc_partial_sig(m, t, gJ):
     sJ = pow(sJ, decimal_m, pkg_n)
     return sJ
 
-# def calc_multisig(sA, sB, sC, sD):
-#     #get pkg n
-#     from pkg_server import get_pkg_n
-#     pkg_n = get_pkg_n()
-#     #calc
-#     s = (sA * sB * sC * sD) % pkg_n
-#     return s 
+def b_calc_multisig(sA, sB, sC, sD):
+    #get pkg n
+    from pkg_server import get_pkg_n
+    pkg_n = get_pkg_n()
+    #calc
+    s = (sA * sB * sC * sD) % pkg_n
+    return s 
 
 def inventory_B_search(record_id):
      global sB

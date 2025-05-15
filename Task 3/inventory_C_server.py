@@ -24,7 +24,7 @@ def calc_tC():
     tC = pow(randomC, pkg_e, pkg_n)
     return tC
 
-def calc_aggregated_t(tA, tB, tC, tD):
+def c_calc_aggregated_t(tA, tB, tC, tD):
     from pkg_server import get_pkg_n
     pkg_n = get_pkg_n()
     t = (tA * tB * tC * tD) % pkg_n
@@ -47,7 +47,7 @@ def calc_partial_sig(m, t, gJ):
     sJ = pow(sJ, decimal_m, pkg_n)
     return sJ
 
-def calc_multisig(sA, sB, sC, sD):
+def c_calc_multisig(sA, sB, sC, sD):
     #get pkg n
     from pkg_server import get_pkg_n
     pkg_n = get_pkg_n()
