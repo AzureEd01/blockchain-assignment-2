@@ -1,20 +1,17 @@
 import hashlib
-#The imports are done within the functions to avoid circular import issue
-#Variables----------------------------------
+
 inventoryA_id = 126
 randomA = 621
 tA = ''
 sA = ''
 node_name = 'A'
-#-------------------------------------------
-#called key as in public key- used to send the id 
+
 def inv_A_key_req():
     return inventoryA_id 
 
 def calc_tA():
     from pkg_server import get_pkg_e
     from pkg_server import get_pkg_n
-    #Get the pkg e (part of public key)
     pkg_e = get_pkg_e()
     pkg_n = get_pkg_n()
     tA = pow(randomA, pkg_e, pkg_n)
@@ -23,39 +20,28 @@ def calc_tA():
 def a_calc_aggregated_t(tA, tB, tC, tD):
     from pkg_server import get_pkg_n
     pkg_n = get_pkg_n()
-    t = (tA * tB * tC * tD) % int(pkg_n)
-    
-    t = (tA * tB) % int(pkg_n)
-    t = (t * tC) % int(pkg_n)
-    t = (t * tD) % int(pkg_n)
+    t = (tA * tB) % pkg_n
+    t = (t * tC) % pkg_n
+    t = (t * tD) % pkg_n
     return t
 
 def a_calc_partial_sig(m, t, gJ):
-    #get random number 
     randomJ = randomA
-    #get pkg n
     from pkg_server import get_pkg_n
     pkg_n = get_pkg_n()
-    #append message to t
     m = str(t) + m
-    #hash message
     hash_m = hashlib.md5(m.encode()).hexdigest()
-    #convert message to int 
     decimal_m = int(hash_m, 16)
-    #Each signer also computes sj = gj*rj^H(t,m) mod n , this is then shared with eachother
-    # sJ = gJ * randomJ
-    # sJ = pow(sJ, decimal_m, pkg_n)
     rJ_exp = pow(randomJ, decimal_m, pkg_n)
     sJ = (gJ * rJ_exp) % pkg_n
-
     return sJ
 
 def a_calc_multisig(sA, sB, sC, sD):
-    #get pkg n
     from pkg_server import get_pkg_n
     pkg_n = get_pkg_n()
-    #calc
-    s = (sA * sB * sC * sD) % pkg_n
+    s = (sA * sB) % pkg_n
+    s = (s * sC) % pkg_n
+    s = (s * sD) % pkg_n
     return s 
 
 def get_privkey_A():
@@ -64,66 +50,86 @@ def get_privkey_A():
     return gA
 
 def inventory_A_search(record_id):
-     global sA
-     with open('A_inventory_db.txt') as f:
+    global sA
+    with open('A_inventory_db.txt') as f:
         lines = f.readlines()
         for row in lines:
-            id = record_id
-            #checking if the id is in the line
-            if row.find(id) != -1:
-                #break the line up so we can get the qty
+            if record_id in row:
                 print(row.split(','))
                 split_row = row.split(',')
-                #get the qty (2nd value)
-                qty = split_row[1]
+                qty = split_row[1].strip()
                 return qty
-# Consensus
+    return None
+
+# PBFT proposer function to create proposal
 def pbft_propose(record_id):
-    # 1. Local search
+    from inventory_B_server import calc_tB, b_calc_partial_sig
+    from inventory_C_server import calc_tC, c_calc_partial_sig
+    from inventory_D_server import calc_tD, d_calc_partial_sig
+
+    # Step 1: Local search for quantity
     qty_A = inventory_A_search(record_id)
+    if qty_A is None:
+        print("Record not found in A's inventory.")
+        return None
+
+    # Step 2: Calculate t-values
     tA = calc_tA()
-    from inventory_B_server import calc_tB
-    from inventory_C_server import calc_tC
-    from inventory_D_server import calc_tD
     tB = calc_tB()
     tC = calc_tC()
     tD = calc_tD()
 
-    # 2. Aggregate t
+    # Step 3: Aggregate t
     agg_t = a_calc_aggregated_t(tA, tB, tC, tD)
 
-    # 3. Partial sig
+    # Step 4: Get private keys
     gA = get_privkey_A()
-    sA = a_calc_partial_sig(qty_A, agg_t, gA)
+    from inventory_B_server import get_privkey_B
+    gB = get_privkey_B()
+    from inventory_C_server import get_privkey_C
+    gC = get_privkey_C()
+    from inventory_D_server import get_privkey_D
+    gD = get_privkey_D()
 
-    # 4. Validation by replicas (send proposal for verification)
-    proposal_data = {
-        'record_id': record_id,
-        'qty': qty_A,
-        's': sA,
-        'tA': tA,
-        'tB': tB,
-        'tC': tC,
-        'tD': tD,
-        'agg_t': agg_t
+    # Step 5: Calculate partial signatures
+    sA = a_calc_partial_sig(qty_A, agg_t, gA)
+    sB = b_calc_partial_sig(qty_A, agg_t, gB)
+    sC = c_calc_partial_sig(qty_A, agg_t, gC)
+    sD = d_calc_partial_sig(qty_A, agg_t, gD)
+
+    # Step 6: Build proposal dictionary with all partial signatures and t values
+    proposal = {
+    'qty': qty_A,
+    'agg_t': agg_t,
+    'sA': sA,
+    'sB': sB,
+    'sC': sC,
+    'sD': sD,
+    'tA': tA,
+    'tB': tB,
+    'tC': tC,
+    'tD': tD
     }
 
-    from inventory_B_server import pbft_vote_on_primary
-    from inventory_C_server import pbft_vote_on_primary
-    from inventory_D_server import pbft_vote_on_primary
 
-    vote_B = pbft_vote_on_primary(proposal_data)
-    vote_C = pbft_vote_on_primary(proposal_data)
-    vote_D = pbft_vote_on_primary(proposal_data)
+    # Step 7: PBFT voting from replicas (B, C, D)
+    from inventory_B_server import pbft_vote_on_primary as vote_B
+    from inventory_C_server import pbft_vote_on_primary as vote_C
+    from inventory_D_server import pbft_vote_on_primary as vote_D
 
-    votes = [vote_B, vote_C, vote_D]
-    print("Votes returned: ", votes)
+    vote_result_B = vote_B(proposal)
+    vote_result_C = vote_C(proposal)
+    vote_result_D = vote_D(proposal)
 
-    # 5. Count agreement
-    if votes.count(vote_B) >= 2:  # at least 2 nodes must agree
-        print("✔ PBFT consensus reached with majority result:", vote_B)
-        return qty_A, sA, agg_t, tA, tB, tC, tD
+
+    votes = [vote_result_B, vote_result_C, vote_result_D]
+
+    print("Votes from replicas:", votes)
+
+    # Step 8: Check consensus (at least 2 out of 3 must agree)
+    if votes.count(True) >= 2:
+        print("✔ PBFT consensus reached.")
+        return proposal
     else:
         print("✘ PBFT consensus failed.")
         return None
-

@@ -1,8 +1,9 @@
 import hashlib
 
 inventoryC_id = 128
-randomC = 821
+randomC = 831
 tC = ''
+sC = ''
 node_name = 'C'
 
 def inv_C_key_req():
@@ -16,11 +17,10 @@ def get_privkey_C():
 def calc_tC():
     from pkg_server import get_pkg_e
     from pkg_server import get_pkg_n
-    #Get the pkg e (part of public key)
     pkg_e = get_pkg_e()
     pkg_n = get_pkg_n()
     tC = pow(randomC, pkg_e, pkg_n)
-    return tC
+    return tC 
 
 def c_calc_aggregated_t(tA, tB, tC, tD):
     from pkg_server import get_pkg_n
@@ -29,63 +29,55 @@ def c_calc_aggregated_t(tA, tB, tC, tD):
     return t
 
 def c_calc_partial_sig(m, t, gJ):
-    #get random number 
     randomJ = randomC
-    #get pkg n
     from pkg_server import get_pkg_n
     pkg_n = get_pkg_n()
-    #append message to t
     m = str(t) + m
-    #hash message
     hash_m = hashlib.md5(m.encode()).hexdigest()
-    #convert message to int 
     decimal_m = int(hash_m, 16)
-    #Each signer also computes sj = gj*rj^H(t,m) mod n , this is then shared with eachother
-    # sJ = gJ * randomJ
-    # sJ = pow(sJ, decimal_m, pkg_n)
     rJ_exp = pow(randomJ, decimal_m, pkg_n)
     sJ = (gJ * rJ_exp) % pkg_n
     return sJ
 
 def c_calc_multisig(sA, sB, sC, sD):
-    #get pkg n
     from pkg_server import get_pkg_n
     pkg_n = get_pkg_n()
-    #calc
     s = (sA * sB * sC * sD) % pkg_n
     return s 
 
 def inventory_C_search(record_id):
+     global sC
      with open('C_inventory_db.txt') as f:
         lines = f.readlines()
-        item_qty = ''
         for row in lines:
-            id = record_id
-            #checking if the id is in the line
-            if row.find(id) != -1:
-                #break the line up so we can get the qty
+            if row.find(record_id) != -1:
                 print(row.split(','))
                 split_row = row.split(',')
-                #get the qty (2nd value)
                 qty = split_row[1]
                 return qty
-            
-# Consensus
+
 def pbft_vote_on_primary(data):
-    # from pkg_server import get_privkey_C # change per node
-    from pkg_server import get_pkg_n
+    from pkg_server import get_pkg_n, get_priv_key
     import hashlib
 
-    # Recompute validation
-    s = data['s']
-    qty = data['qty']
-    t = data['agg_t']
-    m = str(t) + str(qty)
+    qty = str(data['qty'])
+    t = int(data['agg_t'])
+    sC_from_proposal = int(data['sC'])
 
+    gC = get_priv_key('C')
+    rC = randomC
+    pkg_n = get_pkg_n()
+
+    m = str(t) + qty
     hash_m = hashlib.md5(m.encode()).hexdigest()
     decimal_m = int(hash_m, 16)
 
-    # Recalculate the validation value
-    new_t = pow(int(t), decimal_m, get_pkg_n())
-    # Simulated verification return
-    return new_t  # or any value representing "valid"
+    r_exp = pow(rC, decimal_m, pkg_n)
+    expected_sC = (gC * r_exp) % pkg_n
+
+    print(f"[Node C] Expected signature: {expected_sC}")
+    print(f"[Node C] Received signature from proposal: {sC_from_proposal}")
+
+    return expected_sC == sC_from_proposal
+
+

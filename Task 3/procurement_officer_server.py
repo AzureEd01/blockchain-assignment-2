@@ -119,40 +119,18 @@ def submit():
     from inventory_D_server import d_calc_multisig
     d_multi_s = d_calc_multisig(sA, sB, sC, sD)
     
-    #Step 5: Send the seach result and all the parameters of the public key------------------------------
-    # PKG checks that everyones signatures are the same, if one is wrong then they all cannot be accepted 
-    
-    #PLACEHOLDER FOR NOW 
-    s = a_multi_s
-    
-    
-    #The response message is encrypted by PKG using the corresponding RSA key.
-    from pkg_server import pkg_encrypt
-    encrypted_s = pkg_encrypt(s)
-    print("Encrypted message: ", encrypted_s)
-    
-    # The encrypted message response, along with multi-sign parameters, is sent to the user.
-    #IDKKKKKKKK
-    
-    #The user decrypts the response using the corresponding RSA key.
-    from user import proc_off_decrypt
-    decrypted_s = proc_off_decrypt(encrypted_s)
-    print("Decrypted message: ", decrypted_s)
-    
-    # Validation
-    from user import proc_validate_message
-    from user import proc_validate_second
-    first_validation_check = proc_validate_message(decrypted_s)
-    second_validation_check = proc_validate_second(qty_A, inv_a_agg_t)
-    print("First validation check result: ", first_validation_check)
-    print("Second validation check result: ", second_validation_check)
-    
-
     # PBFT Consensus----------------------
     proposal = {
         'qty': qty_A,
         'agg_t': inv_a_agg_t,
-        's': sA  # from a_calc_partial_sig()
+        'sA': sA,
+        'sB': sB,
+        'sC': sC,
+        'sD': sD,
+        'tA': tA,
+        'tB': tB,
+        'tC': tC,
+        'tD': tD
     }
 
     from inventory_B_server import pbft_vote_on_primary as vote_B
@@ -165,16 +143,32 @@ def submit():
 
     votes = [vote_result_B, vote_result_C, vote_result_D]
 
-    # Add A's own signature to the list
-    votes.append(sA)
+    print("Votes from replicas:", votes)
 
-    # Simple consensus check: find majority result
-    from collections import Counter
-    vote_counts = Counter(votes)
-    majority_result, count = vote_counts.most_common(1)[0]
-
-    if count > 1:
+    # Simple consensus check: at least 2 of 3 must agree
+    if votes.count(True) >= 2:
         print("✔ PBFT consensus reached.")
+
+        # --- Now encrypt, decrypt, and validate AFTER consensus ---
+
+        # Encrypt multi-signature
+        from pkg_server import pkg_encrypt
+        encrypted_s = pkg_encrypt(a_multi_s)
+        print("Encrypted message: ", encrypted_s)
+
+        # Decrypt message
+        from user import proc_off_decrypt
+        decrypted_s = proc_off_decrypt(encrypted_s)
+        print("Decrypted message: ", decrypted_s)
+
+        # Validation checks
+        from user import proc_validate_message
+        from user import proc_validate_second
+        first_validation_check = proc_validate_message(decrypted_s)
+        second_validation_check = proc_validate_second(qty_A, inv_a_agg_t)
+        print("First validation check result: ", first_validation_check)
+        print("Second validation check result: ", second_validation_check)
+
     else:
         print("✘ PBFT consensus failed. Aborting signature.")
         return  # Stop the process here

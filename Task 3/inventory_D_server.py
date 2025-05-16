@@ -1,8 +1,9 @@
 import hashlib
 
 inventoryD_id = 129
-randomD = 921
+randomD = 941
 tD = ''
+sD = ''
 node_name = 'D'
 
 def inv_D_key_req():
@@ -16,7 +17,6 @@ def get_privkey_D():
 def calc_tD():
     from pkg_server import get_pkg_e
     from pkg_server import get_pkg_n
-    #Get the pkg e (part of public key)
     pkg_e = get_pkg_e()
     pkg_n = get_pkg_n()
     tD = pow(randomD, pkg_e, pkg_n)
@@ -29,63 +29,54 @@ def d_calc_aggregated_t(tA, tB, tC, tD):
     return t
 
 def d_calc_partial_sig(m, t, gJ):
-    #get random number 
     randomJ = randomD
-    #get pkg n
     from pkg_server import get_pkg_n
     pkg_n = get_pkg_n()
-    #append message to t
     m = str(t) + m
-    #hash message
     hash_m = hashlib.md5(m.encode()).hexdigest()
-    #convert message to int 
     decimal_m = int(hash_m, 16)
-    #Each signer also computes sj = gj*rj^H(t,m) mod n , this is then shared with eachother
-    # sJ = gJ * randomJ
-    # sJ = pow(sJ, decimal_m, pkg_n)
     rJ_exp = pow(randomJ, decimal_m, pkg_n)
     sJ = (gJ * rJ_exp) % pkg_n
     return sJ
 
 def d_calc_multisig(sA, sB, sC, sD):
-    #get pkg n
     from pkg_server import get_pkg_n
     pkg_n = get_pkg_n()
-    #calc
     s = (sA * sB * sC * sD) % pkg_n
     return s 
 
 def inventory_D_search(record_id):
+     global sD
      with open('D_inventory_db.txt') as f:
         lines = f.readlines()
-        item_qty = ''
         for row in lines:
-            id = record_id
-            #checking if the id is in the line
-            if row.find(id) != -1:
-                #break the line up so we can get the qty
+            if row.find(record_id) != -1:
                 print(row.split(','))
                 split_row = row.split(',')
-                #get the qty (2nd value)
                 qty = split_row[1]
                 return qty
-            
+
 # Consensus
 def pbft_vote_on_primary(data):
-    # from pkg_server import get_privkey_D  # change per node
-    from pkg_server import get_pkg_n
+    from pkg_server import get_pkg_n, get_priv_key
     import hashlib
 
-    # Recompute validation
-    s = data['s']
-    qty = data['qty']
-    t = data['agg_t']
-    m = str(t) + str(qty)
+    qty = str(data['qty'])
+    t = int(data['agg_t'])
+    sD_from_proposal = int(data['sD'])
 
+    gD = get_priv_key('D')
+    rD = randomD
+    pkg_n = get_pkg_n()
+
+    m = str(t) + qty
     hash_m = hashlib.md5(m.encode()).hexdigest()
     decimal_m = int(hash_m, 16)
 
-    # Recalculate the validation value
-    new_t = pow(int(t), decimal_m, get_pkg_n())
-    # Simulated verification return
-    return new_t  # or any value representing "valid"
+    r_exp = pow(rD, decimal_m, pkg_n)
+    expected_sD = (gD * r_exp) % pkg_n
+
+    print(f"[Node D] Expected signature: {expected_sD}")
+    print(f"[Node D] Received signature from proposal: {sD_from_proposal}")
+
+    return expected_sD == sD_from_proposal
