@@ -26,7 +26,7 @@ def submit():
 
     record_id = record_var.get()
 
-    # STEP 4: Inventory lookups---------------------------------------------------
+    #Inventory lookups----------------------------------------------------------
     from inventory_A_server import inventory_A_search
     qty_A = inventory_A_search(record_id)
 
@@ -39,7 +39,7 @@ def submit():
     from inventory_D_server import inventory_D_search
     qty_D = inventory_D_search(record_id)
 
-    #STEP 5: Sign with Harn Multi-Sign--------------------------------------------
+    #Sign with Harn Multi-Sign---------------------------------------------------
     # Calculate t values
     from inventory_A_server import calc_tA
     tA = calc_tA()
