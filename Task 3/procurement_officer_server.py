@@ -1,21 +1,9 @@
-#libraries
-import hashlib
-# from keys import gen_partial_sig
-# from keys import gen_multi_sig
-# from pkg_server import pkg_search_qty
+#imports
 from pkg_server import keygen
 from inventory_A_server import calc_tA
-
-# ==========================================================================================================================
-# Signature
-# ==========================================================================================================================
-
-
-
-# ==========================================================================================================================
-# Verification
-# ==========================================================================================================================
 import tkinter as tk
+
+
 #create a widget (named m for master)
 m= tk.Tk()
 record_var = tk.StringVar()
@@ -23,7 +11,7 @@ record_var = tk.StringVar()
 def submit():
     # PKG makes the keys 
     keygen()
-
+    #gets the users input (the id of the item that they want the qty of)
     record_id = record_var.get()
 
     #Inventory lookups----------------------------------------------------------
