@@ -1,38 +1,38 @@
 #Imports -------------------------------------------------
-import hashlib
-# from inventory_A_server import inventory_A_search
 from inventory_A_server import inv_A_key_req
-
-# from inventory_B_server import inventory_B_search
 from inventory_B_server import inv_B_key_req
-
-# from inventory_C_server import inventory_C_search
 from inventory_C_server import inv_C_key_req
-
-# from inventory_D_server import inventory_D_search
 from inventory_D_server import inv_D_key_req
 #----------------------------------------------------------
 #PKG key --------------------------------------------------
 pkg_p = 1004162036461488639338597000466705179253226703
 pkg_q = 950133741151267522116252385927940618264103623
 pkg_e = 973028207197278907211
-
 # compute pkg n
 pkg_n = pkg_p * pkg_q
-
 # compute pkg phi(n)
 pkg_phi_n = (pkg_p - 1) * (pkg_q - 1)
-
 # pkg private key
 pkg_d = pow(pkg_e, -1, pkg_phi_n)
 #-------------------------------------------------------------
-
+#functions----------------------------------------------------
+#sends the pkgs e value 
 def get_pkg_e():
     return pkg_e
 
+#sends the pkgs n value 
 def get_pkg_n():
     return pkg_n
 
+#create private key dictionary variable
+private_keys = {}
+
+#sends the private key to the corresponding inventory 
+def get_priv_key(inv_name):
+    priv_key = private_keys[inv_name]
+    return priv_key
+
+#signs the inventories id to create a private key
 def keysign(id):
     print("Priv key calcs: ")
     print("id: ", id)
@@ -41,13 +41,7 @@ def keysign(id):
     gJ = pow(id, pkg_d, pkg_n)
     return gJ
 
-private_keys = {}
-
-#save the private keys, the servers will then request them 
-def get_priv_key(inv_name):
-    priv_key = private_keys[inv_name]
-    return priv_key
-
+#creates a list of each servers' private key 
 def keygen():
     global private_keys
     #get the each servers id 
@@ -63,9 +57,8 @@ def keygen():
         'C' : keysign(C_id),
         'D' : keysign(D_id)
     }
-    print("PKG: Private keys made- ID has been signed")
-    return private_keys
 
+#encrypts the signature to send to the procurement officer
 def pkg_encrypt(s):
     # import the officers public key 
     from user import proc_off_e

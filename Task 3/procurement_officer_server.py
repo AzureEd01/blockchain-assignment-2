@@ -1,32 +1,22 @@
-#libraries
-import hashlib
-# from keys import gen_partial_sig
-# from keys import gen_multi_sig
-# from pkg_server import pkg_search_qty
+#imports
 from pkg_server import keygen
 from inventory_A_server import calc_tA
-
-# ==========================================================================================================================
-# Signature
-# ==========================================================================================================================
-
-
-
-# ==========================================================================================================================
-# Verification
-# ==========================================================================================================================
 import tkinter as tk
-#create a widget (named m for master)
+#-----------------------------------------------------
+
+#create a widget (named m for master)-----------------
 m= tk.Tk()
 record_var = tk.StringVar()
 
+# PKG makes the keys----------------------------------
+keygen()
+    
+#function that will run everything when the submit button is clicked------------
 def submit():
-    # PKG makes the keys 
-    keygen()
-
+    #gets the users input (the id of the item that they want the qty of)
     record_id = record_var.get()
 
-    # STEP 4: Inventory lookups---------------------------------------------------
+    #Inventory lookups----------------------------------------------------------
     from inventory_A_server import inventory_A_search
     qty_A = inventory_A_search(record_id)
 
@@ -39,7 +29,7 @@ def submit():
     from inventory_D_server import inventory_D_search
     qty_D = inventory_D_search(record_id)
 
-    #STEP 5: Sign with Harn Multi-Sign--------------------------------------------
+    #Sign with Harn Multi-Sign---------------------------------------------------
     # Calculate t values
     from inventory_A_server import calc_tA
     tA = calc_tA()
