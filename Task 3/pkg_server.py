@@ -57,7 +57,6 @@ def keygen():
         'C' : keysign(C_id),
         'D' : keysign(D_id)
     }
-    return private_keys
 
 #encrypts the signature to send to the procurement officer
 def pkg_encrypt(s):

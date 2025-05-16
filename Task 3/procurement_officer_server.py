@@ -2,15 +2,17 @@
 from pkg_server import keygen
 from inventory_A_server import calc_tA
 import tkinter as tk
+#-----------------------------------------------------
 
-
-#create a widget (named m for master)
+#create a widget (named m for master)-----------------
 m= tk.Tk()
 record_var = tk.StringVar()
 
+# PKG makes the keys----------------------------------
+keygen()
+    
+#function that will run everything when the submit button is clicked------------
 def submit():
-    # PKG makes the keys 
-    keygen()
     #gets the users input (the id of the item that they want the qty of)
     record_id = record_var.get()
 
