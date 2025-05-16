@@ -7,7 +7,7 @@ tA = ''
 sA = ''
 node_name = 'A'
 #-------------------------------------------
-#function to send the 
+#called key as in public key- used to send the id 
 def inv_A_key_req():
     return inventoryA_id 
 
@@ -24,6 +24,10 @@ def a_calc_aggregated_t(tA, tB, tC, tD):
     from pkg_server import get_pkg_n
     pkg_n = get_pkg_n()
     t = (tA * tB * tC * tD) % int(pkg_n)
+    
+    t = (tA * tB) % int(pkg_n)
+    t = (t * tC) % int(pkg_n)
+    t = (t * tD) % int(pkg_n)
     return t
 
 def a_calc_partial_sig(m, t, gJ):

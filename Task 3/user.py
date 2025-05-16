@@ -13,11 +13,14 @@ proc_off_q = 1158106283320086444890911863299879973542293243
 proc_off_e = 106506253943651610547613
 
 proc_off_n = proc_off_p * proc_off_q
+proc_off_phin = (proc_off_p - 1) * (proc_off_q - 1)
+
+proc_off_d = pow(proc_off_e, -1, proc_off_phin)
 
 #validation stuff for later 
 def proc_validate_message(s):
     #compute: s ^ e mod n 
-    result = pow(s, proc_off_e, proc_off_n)
+    result = pow(s, pkg_e, pkg_n)
     return result
 
 def proc_validate_second(m, t):
@@ -36,4 +39,8 @@ def proc_validate_second(m, t):
     new_t = pow(int(t), decimal_m, pkg_n)
     result_2 = A_id * B_id * C_id * D_id * new_t % pkg_n
     return result_2
+
+def proc_off_decrypt(encrypted_s):
+    m = pow(encrypted_s, proc_off_d, proc_off_n)
+    return m
 

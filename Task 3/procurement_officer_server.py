@@ -26,7 +26,7 @@ def submit():
 
     record_id = record_var.get()
 
-    # Inventory lookups
+    # STEP 4: Inventory lookups---------------------------------------------------
     from inventory_A_server import inventory_A_search
     qty_A = inventory_A_search(record_id)
 
@@ -39,6 +39,7 @@ def submit():
     from inventory_D_server import inventory_D_search
     qty_D = inventory_D_search(record_id)
 
+    #STEP 5: Sign with Harn Multi-Sign--------------------------------------------
     # Calculate t values
     from inventory_A_server import calc_tA
     tA = calc_tA()
@@ -59,6 +60,7 @@ def submit():
     # Calculate aggregated t
     from inventory_A_server import a_calc_aggregated_t
     inv_a_agg_t = a_calc_aggregated_t(tA, tB, tC, tD)
+    print("Agg T = ", inv_a_agg_t)
 
     from inventory_B_server import b_calc_aggregated_t
     inv_b_agg_t = b_calc_aggregated_t(tA, tB, tC, tD)
@@ -72,32 +74,41 @@ def submit():
     # Get private keys
     from inventory_A_server import get_privkey_A
     gA = get_privkey_A()
+    print("gA: ", gA)
 
     from inventory_B_server import get_privkey_B
     gB = get_privkey_B()
+    print("gB: ", gB)
 
     from inventory_C_server import get_privkey_C
     gC = get_privkey_C()
+    print("gC: ", gC)
 
     from inventory_D_server import get_privkey_D
     gD = get_privkey_D()
+    print("gD: ", gD)
 
     # Generate partial signatures
     from inventory_A_server import a_calc_partial_sig
     sA = a_calc_partial_sig(qty_A, inv_a_agg_t, gA)
+    print("sA: ", sA)
 
     from inventory_B_server import b_calc_partial_sig
     sB = b_calc_partial_sig(qty_B, inv_b_agg_t, gB)
+    print("sB: ", sB)
 
     from inventory_C_server import c_calc_partial_sig
     sC = c_calc_partial_sig(qty_C, inv_c_agg_t, gC)
+    print("sC: ", sC)
 
     from inventory_D_server import d_calc_partial_sig
     sD = d_calc_partial_sig(qty_D, inv_d_agg_t, gD)
+    print("sD: ", sD)
 
     # Multi-signature calculation
     from inventory_A_server import a_calc_multisig
     a_multi_s = a_calc_multisig(sA, sB, sC, sD)
+    print("Multi-sig: ", a_multi_s)
 
     from inventory_B_server import b_calc_multisig
     b_multi_s = b_calc_multisig(sA, sB, sC, sD)
@@ -107,18 +118,37 @@ def submit():
 
     from inventory_D_server import d_calc_multisig
     d_multi_s = d_calc_multisig(sA, sB, sC, sD)
-
+    
+    #Step 5: Send the seach result and all the parameters of the public key------------------------------
+    # PKG checks that everyones signatures are the same, if one is wrong then they all cannot be accepted 
+    
+    #PLACEHOLDER FOR NOW 
+    s = a_multi_s
+    
+    
+    #The response message is encrypted by PKG using the corresponding RSA key.
+    from pkg_server import pkg_encrypt
+    encrypted_s = pkg_encrypt(s)
+    print("Encrypted message: ", encrypted_s)
+    
+    # The encrypted message response, along with multi-sign parameters, is sent to the user.
+    #IDKKKKKKKK
+    
+    #The user decrypts the response using the corresponding RSA key.
+    from user import proc_off_decrypt
+    decrypted_s = proc_off_decrypt(encrypted_s)
+    print("Decrypted message: ", decrypted_s)
+    
     # Validation
     from user import proc_validate_message
-    print("Valid with A: ", proc_validate_message(a_multi_s))
-    print("Valid with B: ", proc_validate_message(b_multi_s))
-    print("Valid with C: ", proc_validate_message(c_multi_s))
-    print("Valid with D: ", proc_validate_message(d_multi_s))
-
     from user import proc_validate_second
-    print("Second validation: ", proc_validate_second(tA, qty_A))
+    first_validation_check = proc_validate_message(decrypted_s)
+    second_validation_check = proc_validate_second(qty_A, inv_a_agg_t)
+    print("First validation check result: ", first_validation_check)
+    print("Second validation check result: ", second_validation_check)
     
-    # PBFT Consensus
+
+    # PBFT Consensus----------------------
     proposal = {
         'qty': qty_A,
         'agg_t': inv_a_agg_t,
