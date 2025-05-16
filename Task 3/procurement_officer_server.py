@@ -98,16 +98,19 @@ def submit():
     # Multi-signature calculation
     from inventory_A_server import a_calc_multisig
     a_multi_s = a_calc_multisig(sA, sB, sC, sD)
-    print("Multi-sig: ", a_multi_s)
+    print("Multi-sig A: ", a_multi_s)
 
     from inventory_B_server import b_calc_multisig
     b_multi_s = b_calc_multisig(sA, sB, sC, sD)
+    print("Multi-sig B: ", b_multi_s)
 
     from inventory_C_server import c_calc_multisig
     c_multi_s = c_calc_multisig(sA, sB, sC, sD)
+    print("Multi-sig C: ", c_multi_s)
 
     from inventory_D_server import d_calc_multisig
     d_multi_s = d_calc_multisig(sA, sB, sC, sD)
+    print("Multi-sig D: ", d_multi_s)
     
     # PBFT Consensus----------------------
     proposal = {
@@ -143,13 +146,15 @@ def submit():
 
         # Encrypt multi-signature
         from pkg_server import pkg_encrypt
-        encrypted_s = pkg_encrypt(a_multi_s)
-        print("Encrypted message: ", encrypted_s)
+        message, encrypted_s = pkg_encrypt(qty_A, a_multi_s)
+        print("Message sent: ", message)
+        print("Encrypted signature: ", encrypted_s)
 
         # Decrypt message
         from user import proc_off_decrypt
-        decrypted_s = proc_off_decrypt(encrypted_s)
-        print("Decrypted message: ", decrypted_s)
+        response_qty, decrypted_s = proc_off_decrypt(qty_A, encrypted_s)
+        print("Message recieved: ", response_qty)
+        print("Decrypted signature: ", decrypted_s)
 
         # Validation checks
         from user import proc_validate_message

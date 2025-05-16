@@ -40,7 +40,7 @@ def proc_validate_second(m, t):
     result_2 = A_id * B_id * C_id * D_id * new_t % pkg_n
     return result_2
 
-def proc_off_decrypt(encrypted_s):
+def proc_off_decrypt(qty_A, encrypted_s):
     m = pow(encrypted_s, proc_off_d, proc_off_n)
-    return m
+    return qty_A, m
 
