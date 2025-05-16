@@ -137,7 +137,7 @@ def submit():
 
     # Simple consensus check: at least 2 of 3 must agree
     if votes.count(True) >= 2:
-        print("✔ PBFT consensus reached.")
+        print("PBFT consensus reached.")
 
         # --- Now encrypt, decrypt, and validate AFTER consensus ---
 
@@ -160,7 +160,7 @@ def submit():
         print("Second validation check result: ", second_validation_check)
 
     else:
-        print("✘ PBFT consensus failed. Aborting signature.")
+        print("PBFT consensus failed. Aborting signature.")
         return  # Stop the process here
 
     #UI--------------------------------------------------
