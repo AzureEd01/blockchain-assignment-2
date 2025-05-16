@@ -6,6 +6,7 @@ tA = ''
 sA = ''
 node_name = 'A'
 
+#sends the id/ public key 
 def inv_A_key_req():
     return inventoryA_id 
 
