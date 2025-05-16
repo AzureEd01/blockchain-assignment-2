@@ -146,13 +146,15 @@ def submit():
 
         # Encrypt multi-signature
         from pkg_server import pkg_encrypt
-        encrypted_s = pkg_encrypt(a_multi_s)
-        print("Encrypted message: ", encrypted_s)
+        message, encrypted_s = pkg_encrypt(qty_A, a_multi_s)
+        print("Message sent: ", message)
+        print("Encrypted signature: ", encrypted_s)
 
         # Decrypt message
         from user import proc_off_decrypt
-        decrypted_s = proc_off_decrypt(encrypted_s)
-        print("Decrypted message: ", decrypted_s)
+        response_qty, decrypted_s = proc_off_decrypt(qty_A, encrypted_s)
+        print("Message recieved: ", response_qty)
+        print("Decrypted signature: ", decrypted_s)
 
         # Validation checks
         from user import proc_validate_message

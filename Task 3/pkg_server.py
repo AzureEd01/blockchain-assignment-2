@@ -59,13 +59,13 @@ def keygen():
     }
 
 #encrypts the signature to send to the procurement officer
-def pkg_encrypt(s):
+def pkg_encrypt(qty_A, s):
     # import the officers public key 
     from user import proc_off_e
     from user import proc_off_n
     #calc encryption
     enc = pow(s, proc_off_e, proc_off_n)
-    return enc
+    return qty_A, enc
 
 
     
