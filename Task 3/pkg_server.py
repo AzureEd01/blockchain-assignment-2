@@ -66,5 +66,13 @@ def keygen():
     print("PKG: Private keys made- ID has been signed")
     return private_keys
 
+def pkg_encrypt(s):
+    # import the officers public key 
+    from user import proc_off_e
+    from user import proc_off_n
+    #calc encryption
+    enc = pow(s, proc_off_e, proc_off_n)
+    return enc
+
 
     
