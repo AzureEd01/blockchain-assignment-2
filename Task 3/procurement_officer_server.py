@@ -59,6 +59,7 @@ def submit():
     # Calculate aggregated t
     from inventory_A_server import a_calc_aggregated_t
     inv_a_agg_t = a_calc_aggregated_t(tA, tB, tC, tD)
+    print("Agg T = ", inv_a_agg_t)
 
     from inventory_B_server import b_calc_aggregated_t
     inv_b_agg_t = b_calc_aggregated_t(tA, tB, tC, tD)
@@ -72,32 +73,41 @@ def submit():
     # Get private keys
     from inventory_A_server import get_privkey_A
     gA = get_privkey_A()
+    print("gA: ", gA)
 
     from inventory_B_server import get_privkey_B
     gB = get_privkey_B()
+    print("gB: ", gB)
 
     from inventory_C_server import get_privkey_C
     gC = get_privkey_C()
+    print("gC: ", gC)
 
     from inventory_D_server import get_privkey_D
     gD = get_privkey_D()
+    print("gD: ", gD)
 
     # Generate partial signatures
     from inventory_A_server import a_calc_partial_sig
     sA = a_calc_partial_sig(qty_A, inv_a_agg_t, gA)
+    print("sA: ", sA)
 
     from inventory_B_server import b_calc_partial_sig
     sB = b_calc_partial_sig(qty_B, inv_b_agg_t, gB)
+    print("sB: ", sB)
 
     from inventory_C_server import c_calc_partial_sig
     sC = c_calc_partial_sig(qty_C, inv_c_agg_t, gC)
+    print("sC: ", sC)
 
     from inventory_D_server import d_calc_partial_sig
     sD = d_calc_partial_sig(qty_D, inv_d_agg_t, gD)
+    print("sD: ", sD)
 
     # Multi-signature calculation
     from inventory_A_server import a_calc_multisig
     a_multi_s = a_calc_multisig(sA, sB, sC, sD)
+    print("Multi-sig: ", a_multi_s)
 
     from inventory_B_server import b_calc_multisig
     b_multi_s = b_calc_multisig(sA, sB, sC, sD)
@@ -116,7 +126,9 @@ def submit():
     print("Valid with D: ", proc_validate_message(d_multi_s))
 
     from user import proc_validate_second
-    print("Second validation: ", proc_validate_second(tA, qty_A))
+    print("Second validation: ", proc_validate_second(qty_A, inv_a_agg_t))
+    print("var 1: ", inv_a_agg_t)
+    print ("var 2: ", qty_A)
     
     # PBFT Consensus
     proposal = {

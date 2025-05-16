@@ -8,16 +8,16 @@ from pkg_server import pkg_e
 
 # # procurement officer
 # Use this for rsa
-proc_off_p = 1080954735722463992988394149602856332100628417
-proc_off_q = 1158106283320086444890911863299879973542293243
-proc_off_e = 106506253943651610547613
+# proc_off_p = 1080954735722463992988394149602856332100628417
+# proc_off_q = 1158106283320086444890911863299879973542293243
+# proc_off_e = 106506253943651610547613
 
-proc_off_n = proc_off_p * proc_off_q
+# proc_off_n = proc_off_p * proc_off_q
 
 #validation stuff for later 
 def proc_validate_message(s):
     #compute: s ^ e mod n 
-    result = pow(s, proc_off_e, proc_off_n)
+    result = pow(s, pkg_e, pkg_n)
     return result
 
 def proc_validate_second(m, t):

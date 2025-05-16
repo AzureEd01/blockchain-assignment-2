@@ -34,6 +34,10 @@ def get_pkg_n():
     return pkg_n
 
 def keysign(id):
+    print("Priv key calcs: ")
+    print("id: ", id)
+    print("pkg_d: ", pkg_d)
+    print("pkg_n: ", pkg_n)
     gJ = pow(id, pkg_d, pkg_n)
     return gJ
 
